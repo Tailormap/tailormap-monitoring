@@ -1,0 +1,49 @@
+# see: https://prometheus.io/docs/prometheus/latest/configuration/configuration/
+global:
+  scrape_interval: 30s
+  scrape_timeout: 10s
+
+scrape_configs:
+  - job_name: 'tailormap-snapshot'
+    metrics_path: '/api/actuator/prometheus'
+    scrape_interval: '15s'
+    scheme: 'http'
+    basic_auth:
+      # set this to the actual tm-admin password, logged during the tailormap-api initialisation
+      # or configure an actuator account
+      password: 'tm-admin'
+      username: 'tm-admin'
+    static_configs:
+      - targets:
+          - 'tailormap:8080'
+
+  - job_name: 'solr-metrics'
+    metrics_path: '/'
+    scrape_interval: '15s'
+    scheme: 'http'
+    static_configs:
+      - targets:
+          - 'solr-metrics:9854'
+
+  - job_name: 'prometheus'
+    scheme: 'http'
+    static_configs:
+      - targets:
+          - 'localhost:9090'
+
+  - job_name: 'grafana'
+    scheme: 'http'
+    metrics_path: '/grafana/metrics'
+    static_configs:
+      - targets:
+          - 'grafana:3000'
+
+  - job_name: 'traefik'
+    metrics_path: '/metrics'
+    scrape_interval: '15s'
+    scheme: 'http'
+    # this works as long as prometheus and traefik containers are in a shared network
+    static_configs:
+      - targets:
+          - 'reverse-proxy:8082'
+

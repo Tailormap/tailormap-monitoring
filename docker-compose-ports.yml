@@ -1,0 +1,9 @@
+# ports overrides for prometheus/grafana
+services:
+  prometheus:
+    ports:
+      - "${PROMETHEUS_PORT:?required}"
+
+  grafana:
+    ports:
+      - "${GRAFANA_PORT:?required}"

@@ -1,7 +1,8 @@
 # Tailormap Monitoring
 
-Monitoring stack for Tailormap stacks using Prometheus to scrape the `/api/actuator/prometheus` of the tailormap-api
-and providing Grafana for presentation.
+Monitoring stack for Tailormap stacks using Prometheus to scrape the `/api/actuator/prometheus` endpoint of the tailormap-api
+and providing Grafana for presentation. Other endpoints in the stack are scraped as well.
+_Note that this example uses default passwords, for a secure setup you'll need to check and update at least the passwords!_.
 
 ## Deployment
 

@@ -1,4 +1,4 @@
-FROM grafana/grafana:11.5.0
+FROM grafana/grafana:11.5.2
 # alternatively use grafana/grafana-enterprise
 # or
 # docker pull grafana/grafana-oss
